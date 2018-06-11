@@ -1,0 +1,185 @@
+<form #f="ngForm" (submit)="Submit(f)"  class="centr-pudding " id="Login1CForm">
+  <div *ngIf="!loginIsValid" class="form-row">
+    
+    <div *ngIf = "showConnectionString" class="col-md-4 mb-3">
+      <!--<simple-input wievName = "MiddleName"
+      wievPlaceholder = "Ваше отчество"  
+      wievDescription = "Middle name" ></simple-input>-->
+      
+      <label for="ConnString">Connection string</label>
+      <input type="text"
+            ngModel
+            form="Login1CForm"
+            name="ConnString"
+            #ConnString = ngModel
+            [(ngModel)] = "connectionString"
+            class="form-control"
+            [ngClass]="{'is-valid': ConnString.valid && ConnString.touched,
+                        'is-invalid': !ConnString.valid && ConnString.touched}" 
+
+            id="ConnString"
+            placeholder ="Адрес сервиса 1С"
+            (input) = "UserDataOnChange()"
+            required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Адрес сервиса 1С.
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <!-- <simple-input wievName = "LastName"
+       wievPlaceholder = "Ваша Фамилия"  
+       wievDescription = "Last name" ></simple-input>-->
+ 
+       <label for="FilialName">Filial</label>
+       <select class="custom-select"
+             ngModel
+             form="Login1CForm"
+             name="filialName"
+             #FilialName = ngModel
+             [(ngModel)] = "filialName"
+             class="form-control"
+             [ngClass]="{'is-valid': FilialName.valid && FilialName.touched,
+                         'is-invalid': !FilialName.valid && FilialName.touched}" 
+ 
+             id="FilialName"
+             placeholder ="Филиал"
+             (input) = "UserDataOnChange()"
+             required>
+
+             <option value="1">Вопак</option>
+             <option value="2">Люксор</option>
+             <option value="3">Дастор</option>
+         </select>
+
+       <div class="valid-feedback">
+         Looks good!
+       </div>
+       <div class="invalid-feedback">
+         Не заполнено Филиал.
+       </div>
+     </div>
+ 
+
+    <div class="col-md-4 mb-3">
+     <!-- <simple-input wievName = "LastName"
+      wievPlaceholder = "Ваша Фамилия"  
+      wievDescription = "Last name" ></simple-input>-->
+
+      <label for="UserName">login</label>
+      <input type="text"
+            ngModel
+            form="Login1CForm"
+            name="UserName"
+            #UserName = ngModel
+            [(ngModel)] = "userName"
+            class="form-control"
+            [ngClass]="{'is-valid': UserName.valid && UserName.touched,
+                        'is-invalid': !UserName.valid && UserName.touched}" 
+
+            id="UserName"
+            placeholder ="Имя пользоателя 1С"
+            (input) = "UserDataOnChange()"
+            required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Имя пользоателя 1С.
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+       <!--<simple-input wievName = "FirstName"
+                     wievPlaceholder = "Ваше имя"  
+                     wievDescription = "First name" ></simple-input>-->
+      <label for="UserPwd">Password</label>
+      <div class="input-group">
+        <input type="password"
+            ngModel
+            form="Login1CForm"
+            name="userPwd"
+            #UserPwd = ngModel
+            [(ngModel)] = "userPwd"
+            class="form-control"
+            [ngClass]="{'is-valid': UserPwd.valid && UserPwd.touched,
+                        'is-invalid': !UserPwd.valid && UserPwd.touched}" 
+      
+            id="userPwd"
+            placeholder ="Пароль пользователя 1С"
+            (input) = "UserDataOnChange()"
+            required>
+          <div class="input-group-append">
+            <button id="DataCheck" [disabled]="!f.valid"  type="submit" class="btn btn-dark">check</button>
+               
+          </div>    
+        
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Пароль пользователя 1С.
+      </div>                 
+    </div>
+
+    </div>
+   
+     
+</div> 
+
+<div *ngIf="!loginIsValid" class="form-group">
+  <div  class="form-check">
+    <input class="form-check-input"
+     type="checkbox"
+     ngModel
+     form="Login1CForm"
+     name="ShowConnString"
+     #ShowConnString = ngModel
+     [(ngModel)] = "showConnectionString"
+     id="ShowConnString" >
+    <label  class="form-check-label" for="ShowConnString">
+      Показать строку сервиса 1С
+    </label>
+  </div>
+</div>
+
+<div *ngIf="loginIsValid" class="btn-group btn-group-toggle " data-toggle="buttons">
+  <label 
+  
+  [ngClass] = "{'btn' : true,
+  'btn-secondary' : !exchangeEnabled, 
+  'btn-danger' : exchangeEnabled}" 
+
+  (click)="StateExchangeStatus(true)"
+ 
+              >
+  <input [checked]="exchangeEnabled" type="radio" [(ngModel)] = "exchangeEnabled"  value=false name="exchange1C"   id="Start1C" autocomplete="off" > Start
+  </label>
+  <label
+  
+  [ngClass] = "{
+    'btn' : true,
+    'btn-secondary' : exchangeEnabled, 
+    'btn-danger' : !exchangeEnabled}" 
+  
+  
+  (click)="StateExchangeStatus(false)"
+  >
+     <input [checked]="exchangeEnabled" type="radio" [(ngModel)] = "exchangeEnabled"  value=true name="exchange1C"  id="Stop1C" autocomplete="off" > Stop
+  </label>
+</div>
+   <!--<div *ngIf="alertStatus != alertData.DoNotSended" id="alert-danger"
+           [ngClass]="{'alert' : true,
+                       'alert-success': alertStatus == alertData.Successful,
+                       'alert-danger' : alertStatus == alertData.Error,
+                       'alert-warning': alertStatus == alertData.SendingNow,
+                       'alert-dark'   : alertStatus == alertData.DoNotSended}"
+           
+           > {{  errorData }} </div> -->
+
+</form>
+
+<alert-lable ></alert-lable> 

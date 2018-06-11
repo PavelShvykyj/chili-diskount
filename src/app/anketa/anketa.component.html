@@ -1,0 +1,204 @@
+
+<ng-container *ngIf="!secretCodeExists" class="centr-pudding" id="alert-danger"> 
+<div class="input-group mb-3 centr-pudding">
+  <!--<div class="input-group-prepend">
+    <button #check class="btn btn-dark" type="button" (click)="checkCode(secretcode)">check</button>
+  </div>-->
+  <input type="text"
+         ngModel
+         name="secretcode"
+         #secretcode = ngModel
+         class="form-control"
+         placeholder="Введите проверочный код"
+         required
+         (input) = "secretcodeOnkeyup()"
+         aria-label=""
+         aria-describedby="basic-addon1">
+   <div class="input-group-append">
+    <button 
+      class="btn btn-dark"
+      type="button"
+      [disabled] = !secretcode.valid
+      (click)="checkCode(secretcode)">
+        check
+    </button>
+   </div>
+</div>
+
+<div id="alert-danger">
+<div  *ngIf="!secretcode.valid && secretcode.touched" class="alert alert-danger">
+  <div  *ngIf="secretcode.errors.required">Не заполнен проверочный код</div>
+</div>
+<div  *ngIf="!secretCodeExists && secretCodeSended" class="alert alert-danger">Неверный  проверочный код</div>
+</div>
+
+</ng-container>
+
+
+<form #f="ngForm" (submit)="Submit(f)" *ngIf="secretCodeExists" class="centr-pudding" id="AnketForm">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+     <!-- <simple-input wievName = "LastName"
+      wievPlaceholder = "Ваша Фамилия"  
+      wievDescription = "Last name" ></simple-input>-->
+
+      <label for="LastName">Last name</label>
+      <input type="text"
+            ngModel
+            form="AnketForm"
+            name="LastName"
+            #LastName = ngModel
+            class="form-control is-valid"
+            [ngClass]="{'is-valid': LastName.valid && LastName.touched,
+                        'is-invalid': !LastName.valid && LastName.touched}" 
+
+            id="LastName"
+            placeholder ="Ваша Фамилия"
+            (input) = "anketeDataOnkeyup()"
+            required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Ваша Фамилия.
+      </div>
+
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+       <!--<simple-input wievName = "FirstName"
+                     wievPlaceholder = "Ваше имя"  
+                     wievDescription = "First name" ></simple-input>-->
+      <label for="FirstName">First name</label>
+      <input type="text"
+            ngModel
+            form="AnketForm"
+            name="FirstName"
+            #FirstName = ngModel
+            class="form-control is-valid"
+            [ngClass]="{'is-valid': FirstName.valid && FirstName.touched,
+                        'is-invalid': !FirstName.valid && FirstName.touched}" 
+      
+            id="FirstName"
+            placeholder ="Ваше имя"
+            (input) = "anketeDataOnkeyup()"
+            required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Ваше имя.
+      </div>                 
+      
+    </div>
+   
+    <div class="col-md-4 mb-3">
+      <!--<simple-input wievName = "MiddleName"
+      wievPlaceholder = "Ваше отчество"  
+      wievDescription = "Middle name" ></simple-input>-->
+      
+      <label for="MiddleName">Middle name</label>
+      <input type="text"
+            ngModel
+            form="AnketForm"
+            name="MiddleName"
+            #MiddleName = ngModel
+            class="form-control is-valid"
+            [ngClass]="{'is-valid': MiddleName.valid && MiddleName.touched,
+                        'is-invalid': !MiddleName.valid && MiddleName.touched}" 
+
+            id="MiddleName"
+            placeholder ="Ваше отчество"
+            (input) = "anketeDataOnkeyup()"
+            required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Не заполнено Ваше отчество.
+      </div>
+
+
+    </div>
+    
+  </div>  
+  
+  <div class="form-group">
+    <label for="AnketEmail">email</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="lableAnketEmail">@</span>
+      </div>
+      
+      <input type="text"
+      ngModel
+      name="AnketEmail"
+      #AnketEmail = ngModel
+      class="form-control"
+      [ngClass]="{'is-valid': AnketEmail.valid && AnketEmail.touched,
+                   'is-invalid': !AnketEmail.valid && AnketEmail.touched}" 
+      
+      id="AnketEmail"
+      placeholder="Ваш email"
+      pattern="^(.+)@(.+)$"
+      (input) = "anketeDataOnkeyup()"
+      required>
+      
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      
+      <div class="invalid-feedback">
+        Не заполнен или неверный Ваш email.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <!--<simple-input wievName = "Phone"
+    wievPlaceholder = "Ваш телефон"  
+    wievDescription = "Phone number" 
+    pattern 
+    ></simple-input>-->
+    <label for="Phone">Phone number</label>
+    <input type="text"
+          ngModel
+          form="AnketForm"
+          name="Phone"
+          #Phone = ngModel
+          class="form-control is-valid"
+          [ngClass]="{'is-valid': Phone.valid && Phone.touched,
+                      'is-invalid': !Phone.valid && Phone.touched}" 
+
+          id="Phone"
+          placeholder ="Ваш телефон"
+          (input) = "anketeDataOnkeyup()"
+          required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Не заполнено  Ваш телефон.
+    </div> 
+  </div>
+  
+  
+  <button [disabled]="!f.valid"  type="submit" class="btn btn-dark">Зарегистрировать</button>
+
+  
+   <!--<div *ngIf="alertStatus != alertData.DoNotSended" id="alert-danger"
+           [ngClass]="{'alert' : true,
+                       'alert-success': alertStatus == alertData.Successful,
+                       'alert-danger' : alertStatus == alertData.Error,
+                       'alert-warning': alertStatus == alertData.SendingNow,
+                       'alert-dark'   : alertStatus == alertData.DoNotSended}"
+           
+           > {{  errorData }} </div> -->
+
+       
+
+</form>
+
+<alert-lable></alert-lable>    
+

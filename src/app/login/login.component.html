@@ -1,0 +1,46 @@
+
+
+
+<form #f="ngForm" (ngSubmit) = "loggIn(f)" class="form-signin" id = "LoggInForm">
+  
+  <h1 class="h3 mb-3 font-weight-normal">Please logg in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" 
+         id="inputEmail"
+         ngModel
+         name="inputEmail"
+         #email = "ngModel"
+         class="form-control"
+         placeholder="Email address"
+         required 
+         pattern="^(.+)@(.+)$"
+         autofocus>
+  <div *ngIf="!email.valid && email.touched" class="alert alert-danger">
+    <div *ngIf="email.errors.required">Не заполнен email</div>
+    <div *ngIf="email.errors.pattern">Не корректный email</div>
+  </div>
+  
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password"
+         id="inputPassword"
+         ngModel
+         name="inputPassword"
+         #password = "ngModel"
+         class="form-control"
+         placeholder="Password"
+         required
+         minlength="6"
+         >
+  <div *ngIf="!password.valid && password.touched" class="alert alert-danger">
+    <div *ngIf="password.errors.required">Не заполнен password</div>
+    <div *ngIf="password.errors.minlength">минимум {{ password.errors.minlength.requiredLength}} символов</div>
+  </div>
+   
+  <div *ngIf="!resoult.status" class="alert alert-danger">
+      Ошибка : {{resoult.error}}  
+  </div>
+
+
+  <button [disabled]=f.invalid class="btn btn-lg btn-dark btn-block" type="submit">Logg in</button>
+  
+</form>

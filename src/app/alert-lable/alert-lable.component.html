@@ -1,0 +1,39 @@
+<div *ngIf="alertStatus != alertData.DoNotSended" class="input-group mb-3"
+ 
+  id="alert-danger">
+
+  <div 
+       
+      [ngClass]="{'input-group-prepend' : true,
+              
+              'alert-success': alertStatus == alertData.Successful,
+              'alert-danger' : alertStatus == alertData.Error,
+              'alert-warning': alertStatus == alertData.SendingNow,
+              'alert-dark'   : alertStatus == alertData.DoNotSended}"
+  > 
+  <span  id=""
+  [ngClass]="{'input-group-text' : true,
+  'alert-success': alertStatus == alertData.Successful,
+  'alert-danger' : alertStatus == alertData.Error,
+  'alert-warning': alertStatus == alertData.SendingNow,
+  'alert-dark'   : alertStatus == alertData.DoNotSended}"
+  
+  
+  >{{ errorData }}</span> 
+  
+  </div>
+
+  
+  <div 
+  [ngClass]="{'input-group-append' : true,
+              
+              'alert-success': alertStatus == alertData.Successful,
+              'alert-danger' : alertStatus == alertData.Error,
+              'alert-warning': alertStatus == alertData.SendingNow,
+              'alert-dark'   : alertStatus == alertData.DoNotSended}"
+  
+  >
+     
+      <button class="btn btn-dark"  type="button" (click)=HideAlert()>Ok</button>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+#centr-pudding  {
+    padding-right: 10px; 
+    padding-left: 10px
+}
+.scrolling-hight {
+    height: 450px;
+    overflow: hidden;
+    overflow-y: auto;
+}

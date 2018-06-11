@@ -1,0 +1,12 @@
+
+.centr-pudding  {
+    padding-right: 20%; 
+    padding-left: 20%
+}
+
+#alert-danger {
+    position: relative;
+    top: 5px;
+    padding-right: 20%; 
+    padding-left: 20%
+}

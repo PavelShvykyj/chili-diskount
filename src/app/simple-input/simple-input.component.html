@@ -1,0 +1,21 @@
+
+<label [for]="wievName">{{ wievDescription }}</label>
+<input type="text"
+      ngModel
+      form="AnketForm"
+      [name]="wievName"
+      #wiev = ngModel
+      class="form-control is-valid"
+      [ngClass]="{'is-valid': wiev.valid && wiev.touched,
+                   'is-invalid': !wiev.valid && wiev.touched}" 
+
+      [id]="wievName"
+      [placeholder] ="wievPlaceholder"
+      required>
+<div class="valid-feedback">
+  Looks good!
+</div>
+<div class="invalid-feedback">
+  Не заполнено {{ wievPlaceholder }}.
+</div>
+

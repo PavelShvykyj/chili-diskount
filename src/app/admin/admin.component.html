@@ -1,0 +1,21 @@
+<login1c></login1c>
+
+
+
+<div class="input-group mb-3 cenrt-padding">
+    <div class="input-group-prepend">
+      <button type="button" class="btn btn-dark" (click)="getPackageDates()">Get dates</button>
+      <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a *ngFor="let packageDate of packageDates" class="dropdown-item" (click) = "SetPackageDate(packageDate)" >{{ packageDate }}</a>
+      </div>
+    </div>
+    
+    <input disabled   id="packageDate" [(ngModel)]="packageDate"   type="text" class="form-control" placeholder="Укажите дату пакета карт для загрузки">
+  
+    <div class="input-group-append"><button type="button" class="btn btn-dark" (click) ="UpdatePackage()" >Send package</button> </div>
+</div>
+
+<alert-lable ></alert-lable> 
