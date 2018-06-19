@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Login1CComponent } from './login1C/login1C.component';
 import { AlertLableComponent } from './alert-lable/alert-lable.component';
 import { GlobalEnumsComponent } from './global-enums/global-enums.component';
+import { WorksheetComponent } from './worksheet/worksheet.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GlobalEnumsComponent } from './global-enums/global-enums.component';
     SimpleInputComponent,
     Login1CComponent,
     AlertLableComponent,
-    GlobalEnumsComponent
+    GlobalEnumsComponent,
+    WorksheetComponent
     
   ],
   imports: [
