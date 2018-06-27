@@ -4,7 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import * as rx from 'rxjs';
-import { error } from 'protractor';
+import { error, promise } from 'protractor';
+import { reject } from 'q';
 
 export  interface IDataObject {
   [key: string]: any
@@ -33,6 +34,20 @@ export class FireDataService {
   {
     return 'qwerty777'
   }
+
+  getWorksheetStructure() : Promise<IDataObject>
+  {
+    
+    return firebase.database().ref("WorkSheetPoints")
+            .once("value")
+            .then(
+                  snapshotStructure => {
+                    let struct = snapshotStructure.val() as IDataObject
+                    return struct
+                  }
+                )  as Promise<IDataObject>
+  }
+
 
   getWorksheetObject(DataSnapshot : firebase.database.DataSnapshot )
   {

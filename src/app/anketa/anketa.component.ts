@@ -99,4 +99,26 @@ export class AnketaComponent implements OnInit, OnDestroy{
                                 this.alertLableComponent.errorData = error.message
                               })
   }
+
+  GetWorkSheetOject() {
+    this.dataSource.getWorksheetStructure().then(struct => {
+      //console.log(struct)
+      struct.forEach(element => {
+        //console.log(element)
+        switch (element.Type) {
+          case "Group":
+            console.log("Group");
+            break;
+          case "Select":
+            console.log("Select");
+            break;
+          default:
+            console.log("Input");
+            break;
+        }
+      });
+    })
+  }
+
+
 }

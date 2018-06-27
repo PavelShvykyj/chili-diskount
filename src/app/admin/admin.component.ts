@@ -28,6 +28,27 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() { }
 
+  GetWorkSheetOject() {
+    this.fireDS.getWorksheetStructure().then(struct => {
+      //console.log(struct)
+      struct.forEach(element => {
+        //console.log(element)
+        switch (element.Type) {
+          case "Group":
+            console.log("Group");
+            break;
+          case "Select":
+            console.log("Select");
+            break;
+          default:
+            console.log("Input");
+            break;
+        }
+      });
+    })
+  }
+
+
   getPackageDates()
   {
     
