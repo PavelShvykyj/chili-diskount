@@ -17,7 +17,7 @@ import { FireAvtorisationService } from './services/fire-avtorisation.service';
 import { FireAuthGuard  } from './services/fire-auth-guard.service';
 import { FireDataService  } from './services/fire-data.service';
 import { OneCDataService } from './services/one-c-data.service';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { SimpleInputComponent } from './simple-input/simple-input.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Login1CComponent } from './login1C/login1C.component';
@@ -49,9 +49,11 @@ import { WorksheetComponent } from './worksheet/worksheet.component';
     AngularFireAuthModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'Home', component: HomeComponent},
       {path: 'Anketa', component: AnketaComponent},
+      {path: 'Worksheet', component: WorksheetComponent},
       {path: 'Login', component: LoginComponent},
       {path: 'LogOut', component: LogoutComponent},
       {path: 'Manager',

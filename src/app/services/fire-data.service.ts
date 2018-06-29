@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import * as rx from 'rxjs';
-import { error, promise } from 'protractor';
-import { reject } from 'q';
+
+
 
 export  interface IDataObject {
   [key: string]: any
